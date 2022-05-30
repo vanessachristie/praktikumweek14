@@ -49,7 +49,7 @@ namespace praktikumweek14
                 laManager.Text = dtTeam.Rows[Posisi][1].ToString();
                 laStadium.Text = dtTeam.Rows[Posisi][2].ToString();
                 simpan = dtTeam.Rows[Posisi][3].ToString();
-                 dtTeam2 = new DataTable();
+                dtTeam2 = new DataTable();
                 dtTeam3 = new DataTable();
                 match = new DataTable();
 
@@ -77,7 +77,7 @@ namespace praktikumweek14
 
                 //data grid view
 
-                sqlQuery = "select m.match_date ,date_format(m.match_date, \'%d/%c/%Y') as 'Match_Date', 'HOME' as 'home/away', concat('vs ',t.team_name) as 'lawan', concat(goal_home, ' - ', goal_away) as 'Score' from `match` m, team t where team_home = '" + simpan + "' and m.team_away = t.team_id union select m.match_date ,date_format(m.match_date, \'%d/%c/%Y') as 'match date', 'AWAY' as 'Home/Away', concat('vs ',t.team_name) as 'Lawan', concat(goal_home, ' - ', goal_away) as 'Score' from `match` m, team t where team_away = '" + simpan + "' and m.team_away = t.team_id order by 1 desc limit 5;";
+                sqlQuery = "select m.match_date ,date_format(m.match_date, \'%d/%c/%Y') as 'Match_Date', 'HOME' as 'home/away', concat('vs ',t.team_name) as 'lawan', concat(goal_home, ' - ', goal_away) as 'Score' from `match` m, team t where team_home = '" + simpan + "' and m.team_away = t.team_id union select m.match_date ,date_format(m.match_date, \'%d/%c/%Y') as 'match date', 'AWAY' as 'Home/Away', concat('vs ',t.team_name) as 'Lawan', concat(goal_home, ' - ', goal_away) as 'Score' from `match` m, team t where team_away = '" + simpan + "' and m.team_home = t.team_id order by 1 desc limit 5;";
                 sqlCommand = new MySqlCommand(sqlQuery, sqlConnect);
                 sqlAdapter = new MySqlDataAdapter(sqlCommand);
                 sqlAdapter.Fill(match);
